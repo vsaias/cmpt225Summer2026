@@ -1,5 +1,6 @@
 // ll_problem2_sol.cpp
 
+#include <cassert>
 #include <iostream>
 
 using std::cout;
@@ -24,23 +25,96 @@ using std::string;
 //    easier.
 //
 
-struct Node
+class List
 {
-    string data;
-    Node* next;
-};
+  private:
+    struct Node
+    {
+        string data;
+        Node* next;
+    };
 
+    Node* head = nullptr;
+
+  public:
+    // default constructor
+    List() : head(nullptr) {}
+
+    // destructor
+    ~List() {
+        clear_list();
+        cout << "destructor called!\n";
+    }
+
+    bool is_empty() const { return head == nullptr; }
+
+    void print() const
+    {
+        if (is_empty())
+        {
+            cout << "<empty list>\n";
+        }
+        else
+        { // list is not empty
+            Node* p = head;
+            while (p != nullptr)
+            {
+                cout << p->data << " ";
+                p = p->next;
+            }
+            cout << endl;
+        }
+    }
+
+    int size() const
+    {
+        int count = 0;
+        Node* p   = head;
+        while (p != nullptr)
+        {
+            count++;
+            p = p->next;
+        }
+        return count;
+    }
+
+    void add_front(const string& s) { head = new Node{s, head}; }
+
+    void remove_front()
+    {
+        if (is_empty())
+        {
+            return; // do nothing
+        }
+        else
+        { // not empty
+            assert(!is_empty());
+            Node* p = head;
+            head    = head->next;
+            delete p;
+        }
+    }
+
+    void clear_list()
+    {
+        while (!is_empty())
+        {
+            remove_front();
+        }
+    }
+
+}; // class list
 
 int main()
 {
-    // head = nullptr;
-    // add_front("BOS");
-    // add_front("ATL");
-    // add_front("MSP");
-    // add_front("LAX");
+    List lst;
+    lst.add_front("LAX");
+    lst.print();
+    lst.remove_front();
 
-    // print();
-    // cout << "Size: " << size() << endl;
+    List pets;
+    pets.add_front("dog");
+    pets.print();
 
-    // clear_list();
+    // destructors automatically called
 } // main
