@@ -96,7 +96,7 @@ yourself!
   
    i. $an^k$ is $O(n^k)$ for any positive constant $a$ and integer $k \geq 1$
   
-   j. $an^k$ is **not** $O(n^(k-1))$ for any positive constant $a$ and integer
+   j. $an^k$ is **not** $O(n^{k-1})$ for any positive constant $a$ and integer
       $k \geq 1$
 
 8. For each of the following algorithms, give the tightest $O$-notation bound
