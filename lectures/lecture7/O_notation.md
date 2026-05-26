@@ -167,32 +167,25 @@ function, and if you're algorithm takes an exponential amount of time, it is a
 **Important**: refresh your memory on the rules for manipulating exponents: see
 the textbook for details!
 
-What happens if you double the size of the input to an exponential time
-algorithm, e.g. instead of printing all $n$-bit strings you print all $2n$-bit
-strings? The running time is $f(2n) = 2^{2n} = 4 \cdot 2^n = 4f(n)$, four times
-as long as printing $n$-bit strings. 
+What happens to an exponential time algorithm when you increase the input size
+by 1? Since $f(n) = 2^n$, we have $f(n+1) = 2^{n+1} = 2 \cdot 2^n = 2f(n)$. So
+increasing the input size by 1 *doubles* the running time.
 
-What is you *triple* the size of the input? The running time is $f(3n) = 2^{3n}
-= 8 \cdot 2^n = 8f(n)$, eight times as long as printing $n$-bit strings.
+What if you add 10 more items? Then $f(n+10) = 2^{n+10} = 2^{10} \cdot 2^n =
+1024 \cdot 2^n = 1024f(n)$. So adding 10 more items means the algorithm runs
+more than 1000 time as long.
 
 If you have 10 times as many bits, the running time is $f(10n) = 2^{10n} = 1024
 \cdot 2^n = 1024f(n)$, 1024 times as long as printing $n$-bit strings. This is
-pretty bad! Compare this two:
+pretty bad!
 
-- Finding the min of a sorted array of size $10n$: same as the time it takes to
-  find the time for an array of size $n$.
+Note that if you *double* the input size, the running time is $f(2n) = 2^{2n} =
+(2^n)^2 = f(n)^2$. This means that however long it took you to process $n$
+items, if the algorithm runs in exponential time, it will take the *square* of
+that running time to process $2n$ items.
 
-- Doing linear search on a linked list of size $10n$: 10 times as long as the
-  time it takes to do it on a linked list of size $n$.
-
-- Sorting an array of size $10n$ with insertion sort: 100 times as long as the
-  time it takes to sort an array of size $n$.
-
-- Sorting an array of size $10n$ with quicksort: a little more than 100 times as
-  long as the time it takes to sort an array of size $n$
-
-- Printing all $10n$-bit strings: over 1000 times as long as printing $n$-bit
-  strings.
+In practice, exponential time algorithms are very slow and typically impractical
+except for small values of $n$.
 
 ## O-notation
 
